@@ -2,26 +2,43 @@ import subprocess
 import os
 
 
-def generate_requirements(output_path=None):
+def generate_clean_requirements(packages=None, output_path=None):
     """
-    Generates a requirements.txt file listing all packages in the current environment.
+    Generates a clean requirements.txt with only selected packages.
 
     Parameters:
-        output_path (str, optional): Custom path to save the requirements file.
-                                     If None, saves it in the project root directory.
+        packages (list): List of package names to include.
+        output_path (str): Where to save the requirements.txt file.
+                           If None, it saves it to the root of the project.
     """
+    if packages is None:
+        packages = [
+            "pandas", "numpy", "matplotlib", "seaborn", "scikit-learn",
+            "xgboost", "lightgbm", "plotly", "missingno", "shap",
+            "kagglehub", "lime", "streamlit", "gradio"
+        ]
+
     try:
-        # If no output_path is given, default to project root: one level above /src
+        # Detect root folder of project
         current_file = os.path.abspath(__file__)
         project_root = os.path.dirname(os.path.dirname(current_file))
+
+        # Set default path if none provided
         if output_path is None:
             output_path = os.path.join(project_root, "requirements.txt")
 
-        with open(output_path, "w") as f:
-            subprocess.run(["pip", "freeze"], stdout=f, check=True)
+        # Run pip freeze
+        result = subprocess.run(["pip", "freeze"], capture_output=True, text=True)
+        installed = result.stdout.splitlines()
 
-        print(f"✅ requirements.txt successfully created at: {output_path}")
+        # Filter only relevant packages
+        filtered = [pkg for pkg in installed if any(p in pkg.lower() for p in packages)]
+
+        # Write the output
+        with open(output_path, "w") as f:
+            f.write("\n".join(filtered))
+
+        print(f"✅ Clean requirements.txt created at: {output_path}")
 
     except Exception as e:
-        # This block was missing or not indented!
         print(f"❌ Error creating requirements.txt: {e}")

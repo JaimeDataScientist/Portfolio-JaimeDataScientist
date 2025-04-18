@@ -1,8 +1,7 @@
-import kagglehub
 import shutil
 import os
 
-def download_dataset(destination_folder="../data"):
+def download_dataset_kaggle(destination_folder="../data",path=None):
     """
     Downloads the dataset from Kaggle using kagglehub and moves the files to the 'data' folder.
 
@@ -12,12 +11,6 @@ def download_dataset(destination_folder="../data"):
     Returns:
         tuple: (destination_folder, downloaded_filename)
     """
-    #The next line would install the needed library for downloading.
-    #pip install kagglehub
-
-    # Download from Kaggle
-    path = kagglehub.dataset_download("gauravtopre/bank-customer-churn-dataset")
-
     # Ensure target folder exists
     os.makedirs(destination_folder, exist_ok=True)
 

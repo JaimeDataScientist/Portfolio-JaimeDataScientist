@@ -13,3 +13,4 @@ It includes techniques for handling imbalanced data (SMOTE), feature selection, 
 - `notebooks/`: Exploratory analysis and model training
 - `data/`: Sample training data (if shareable)
 - `src/`: Custom Python scripts for modeling
+ 
