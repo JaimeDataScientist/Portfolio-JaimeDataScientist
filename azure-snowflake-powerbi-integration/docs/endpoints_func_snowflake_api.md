@@ -9,6 +9,13 @@ This endpoint allows executing a SQL query on Snowflake using private key authen
 
 ---
 
+## Authentication & Security
+
+- All secrets (private key, user, account, warehouse, database) are managed via Azure App Settings.
+- Nothing is hardcoded.
+- Function-level access requires a `?code=` key in the query string.
+
+---
 ### Production Endpoint
 
 https://func-snowflake-api-feg7epdhe2dscaey.westeurope-01.azurewebsites.net/api/getsnowflakedata?code={function_Key}
