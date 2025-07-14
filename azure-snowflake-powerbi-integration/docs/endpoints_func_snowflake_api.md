@@ -42,21 +42,21 @@ A list of JSON objects representing the query results from Snowflake.
 ```json
 [
   {
-    "Communication No": -226605624,
+    "Communication No": -XXXXXXXXXXXX,
     "PK_Inst": 3675677,
-    "Installation": "330172355",
+    "Installation": "XXXXXXXXX",
     "date_install": "2024-06-21T00:00:00+00:00",
-    "Contract No": "330178041",
+    "Contract No": "XXXXXXXXXXX",
     "Status": "CLOSED",
-    "create_user_name": "Rishi Jusia",
+    "create_user_name": "Rishi XXXXXXXXX",
     "Resolution Description": "Added info about installation/customer",
     "Time Communication": "2024-07-17T12:30:51"
   },
   {
-    "Communication No": -226604431,
-    "PK_Inst": 1499392,
-    "Installation": "330025065",
-    "create_user_name": "Sonny van Zeelst"
+    "Communication No": -XXXXXXXXXXX,
+    "PK_Inst": XXXXXXXXXX,
+    "Installation": "XXXXXX",
+    "create_user_name": "Sonny van XXXXXXXX"
   }
 ]
 ```
