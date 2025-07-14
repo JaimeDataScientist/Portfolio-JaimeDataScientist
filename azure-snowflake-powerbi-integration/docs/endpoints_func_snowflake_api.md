@@ -42,21 +42,21 @@ A list of JSON objects representing the query results from Snowflake.
 ```json
 [
   {
-    "Communication No": -226605624,
+    "Communication No": -XXXXXXXXXXXX,
     "PK_Inst": 3675677,
-    "Installation": "330172355",
+    "Installation": "XXXXXXXXX",
     "date_install": "2024-06-21T00:00:00+00:00",
-    "Contract No": "330178041",
+    "Contract No": "XXXXXXXXXXX",
     "Status": "CLOSED",
-    "create_user_name": "Rishi Jusia",
+    "create_user_name": "Rishi XXXXXXXXX",
     "Resolution Description": "Added info about installation/customer",
     "Time Communication": "2024-07-17T12:30:51"
   },
   {
-    "Communication No": -226604431,
-    "PK_Inst": 1499392,
-    "Installation": "330025065",
-    "create_user_name": "Sonny van Zeelst"
+    "Communication No": -XXXXXXXXXXX,
+    "PK_Inst": XXXXXXXXXX,
+    "Installation": "XXXXXX",
+    "create_user_name": "Sonny van XXXXXXXX"
   }
 ]
 ```
@@ -85,3 +85,20 @@ All exceptions are logged using logging.exception() in the Azure Function.
 - Calling Snowflake data from low-code platforms (e.g. OutSystems).
 - Building custom dashboards or reports that depend on dynamic Snowflake queries.
 - Exposing serverless APIs for internal tools or BI platforms.
+
+  ---
+
+### API in Action
+
+####  Azure Function Invocations
+
+This screenshot shows real usage from the Azure Portal (success and error counts):
+
+![Azure Function Invocations](img/azure_function_success.png)
+
+####  Postman Test
+
+This shows a successful SQL query execution via Postman calling the Azure Function API:
+
+![Postman Snowflake Test](img/postman_success_response.png)
+
