@@ -7,6 +7,11 @@
 **Description:**  
 This endpoint connects to the external Guideon API using OAuth2 client credentials. It allows fetching service tickets filtered by creation or modification dates. The function is implemented as an Azure Function with secure environment-managed credentials.
 
+## Authentication & Security
+
+- API requests must include a `?code=` key to access the Azure Function.
+- The function performs a secure OAuth2 token request to the Guideon authorization server.
+- The access token is then used to call the `/v2/tickets` endpoint.
 ---
 
 ### Production Endpoint
