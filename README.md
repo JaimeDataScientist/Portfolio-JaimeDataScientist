@@ -1,37 +1,41 @@
-# Portfolio-JaimeDataScientist
-A curated portfolio showcasing my main Data Science projects, including machine learning models, data visualization, automation, and real-world business solutions.
+# Portfolio — Jaime Fernández Quintanilla 
 
-# Hi, I'm Jaime — Data Scientist
-
-Welcome to my portfolio! Here you’ll find a curated collection of my Data Science and Machine Learning projects — from real-world business cases to personal challenges where I explore automation, predictive modeling, and data visualization.
+Welcome to my Data Science portfolio — a curated collection of real-world projects and experiments combining analytics, automation, and machine learning to solve business problems and improve decision-making.
 
 ---
 
-## Projects
+## 🔧 Featured Projects
 
-| Project | Description | Tech Stack |
-|--------|-------------|------------|
-| [Customer Churn Prediction](./churn-prediction) | Model to identify customers at risk of leaving and optimize retention strategy | Python, Scikit-learn, Logistic Regression, SMOTE |
-| [Customer Segmentation](./customer-segmentation) | Cluster analysis to group customers by behavior and value | Python, KMeans, PCA, Seaborn |
-| [Automation @ Verisure](./rpa-verisure-dashboard) | Robotic Process Automation and dashboards for operational efficiency | UiPath, Power BI, SQL |
-
----
-
-## About Me
-
-I'm a Data Scientist with a background in consulting and a strong passion for building solutions that matter.  
-I work at **Verisure**, where I develop predictive models and dashboards.  
-I recently completed a Master's in Artificial Intelligence and Data Science.
+| Project | Description | Tech Stack | Status |
+|--------|-------------|------------|--------|
+| [Azure Snowflake Power BI Integration](./azure-snowflake-powerbi-integration) | API endpoints using Azure Functions to securely query Snowflake and expose data for Power BI / OutSystems | Azure Functions, Python, Snowflake, OAuth2 | ✅ Complete |
+| [Customer Churn Prediction](./churn-prediction) | Identify customers at risk of leaving and build proactive retention strategies | Python, Scikit-learn, SMOTE, Logistic Regression |  In Progress |
+| [Customer Segmentation](./customer-segmentation) | Unsupervised clustering to discover behavioral customer segments | Python, KMeans, PCA, Seaborn |  In Progress |
+| [Automation @ Verisure](./rpa-verisure-dashboard) | Robotic Process Automation and reporting dashboards for operational teams | UiPath, Power BI, SQL |  In Progress |
 
 ---
 
-## Tools & Skills
+## 👋 About Me
 
-`Python` | `SQL` | `Pandas` | `Scikit-learn` | `XGBoost` | `Power BI` | `Tableau` | `Git` | `Dashboards`
+I'm **Jaime Fernández**, a Data Scientist with experience in consulting and applied AI.  
+I currently work at **Verisure Netherlands**, where I design predictive models, automate tasks with RPA, and build business intelligence dashboards.
+
+I recently completed a **Master’s in Artificial Intelligence and Data Science**, and I’m passionate about using data to solve real-world problems across industries.
 
 ---
 
-## 📫 Let's connect
+## ⚙️ Tools & Skills
 
-- 📧 jaimefernandezquintanilla@email.com  
-- 💼 [LinkedIn](https://www.linkedin.com/in/jaimefernandezquintanilla/)  
+`Python` • `SQL` • `Pandas` • `Scikit-learn` • `XGBoost` • `Azure Functions` • `Snowflake` • `Power BI` • `Tableau` • `UiPath` • `Git`
+
+---
+
+##  Let's Connect
+
+-  Email: jaimefernandezquintanilla@email.com  
+-  [LinkedIn](https://www.linkedin.com/in/jaimefernandezquintanilla/)  
+-  [GitHub](https://github.com/JaimeDataScientist)
+
+---
+
+>  **Note:** More projects are actively being developed — stay tuned!
