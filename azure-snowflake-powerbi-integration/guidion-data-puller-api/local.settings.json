@@ -1,0 +1,12 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "TOKEN_URL": "https://api-prod.guidion.nl/oauth/client_credential/accesstoken?grant_type=client_credentials",
+    "CLIENT_ID": "CLIENT_ID",
+    "CLIENT_SECRET": "CLIENT_SECRET",
+    "SCOPE": "xxx",
+    "DATA_URL": "https://api-prod.guidion.nl/home/v2/tickets"
+  }
+}

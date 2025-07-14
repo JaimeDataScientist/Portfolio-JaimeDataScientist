@@ -1,0 +1,14 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "SNOWFLAKE_USER": "user_here",
+    "SNOWFLAKE_ACCOUNT": "account_here",
+    "SNOWFLAKE_WAREHOUSE": "warehouse_here",
+    "SNOWFLAKE_DATABASE": "database_here",
+    "SNOWFLAKE_SCHEMA": "schema_here",
+    "PRIVATE_KEY_PART1": "secret_part1",
+    "PRIVATE_KEY_PART2": "secret_part2",
+    "PRIVATE_KEY_PART3": "secret_part3"
+  }
+}
