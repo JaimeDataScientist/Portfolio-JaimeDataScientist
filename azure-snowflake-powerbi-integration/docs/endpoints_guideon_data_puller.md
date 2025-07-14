@@ -129,9 +129,9 @@ All exceptions are logged using `logging.exception()` in the Azure Function.
 #### Azure Function Invocations
 
 This screenshot shows real usage of the `guidion_data_puller` Function App in Azure.  
-You can observe successful (200), bad request (400), and internal error (500) responses, useful to validate the function’s robustness and error logging.
+You can observe successful (200), bad request (400), and internal error (500) responses (due to the fact the RAM could not handle the amount of data in that call), useful to validate the function’s robustness and error logging.
 
-![Azure Function Invocations]()
+![Azure Function Invocations](img/azure_guiden_function_success.png)
 
 #### Postman Test
 
@@ -139,4 +139,4 @@ This example shows a successful invocation using Postman with the required query
 `createdFrom`, `createdTo`, and the `code` for authentication.  
 The response includes a list of ticket records retrieved from the Guideon API via the Azure Function.
 
-![Postman Test Response]()
+![Postman Test Response](img/postman_success_response_guideon.png)
