@@ -1,14 +1,8 @@
-import azure.functions as func
-import logging
-import requests
-import os
+import azure.functions as func            # Azure Functions SDK
+import logging                            # Logging for debugging and monitoring
+import requests                           # Used for HTTP requests to external APIs
+import os                                 # For accessing environment variables
 
-# Create a new Azure Function App with HTTP trigger, using FUNCTION-level authentication (requires API key)
-#app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
-
-# Define the route (URL path) that will trigger this function
-#@app.route(route="guidion_data_puller")
-#def guidion_data_puller(req: func.HttpRequest) -> func.HttpResponse:
 def main(req: func.HttpRequest) -> func.HttpResponse:
 
     logging.info("HTTP trigger received to pull Guidion tickets.")
@@ -21,7 +15,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     created_from = req.params.get("createdFrom")
     created_to = req.params.get("createdTo")
 
-    
+    # Validate required query parameters
     if not created_from or not created_to:
         return func.HttpResponse(
             "Missing required query parameters: createdFrom and createdTo.",
@@ -30,14 +24,17 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     # -----------------------
     # 2. Get optional parameters (can be passed in the URL or stored in environment)
+    # These parameters allow narrowing down or paginating the result
     # -----------------------
     page_no = req.params.get("pageNo")     
     page_size = req.params.get("pageSize")        
     contract_id = req.params.get("contractExternalId")
     lastModifiedFrom = req.params.get("lastModifiedFrom")
     lastModifiedTo = req.params.get("lastModifiedTo")
+
     # -----------------------
     # 3. Read environment variables (from local.settings.json or Azure App Settings)
+    # These include the token and data endpoints, and credentials
     # -----------------------
     token_url = os.environ.get("TOKEN_URL")
     client_id = os.environ.get("CLIENT_ID")
@@ -47,12 +44,13 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     # -----------------------
     # 4. Request OAuth token using client credentials (x-www-form-urlencoded)
+    # This is required to authenticate against the Guidion API
     # -----------------------
     token_data = {
-        #"grant_type": "client_credentials",
+        #"grant_type": "client_credentials",             # Uncomment if required by token server
         "client_id": client_id,
         "client_secret": client_secret
-        #"scope": scope
+        #"scope": scope                                  # Uncomment if scope is needed
     }
     token_headers = {"Content-Type": "application/x-www-form-urlencoded"}
 
@@ -61,9 +59,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         logging.info(f"Token response status: {token_response.status_code}")
         logging.info(f"Token response body: {token_response.text}")
         token_response.raise_for_status()  # Raise error if status is not 200 OK
-        access_token = token_response.json().get("access_token")
+        access_token = token_response.json().get("access_token")  # Extract token from JSON response
     except Exception as e:
-        logging.error(f"Error fetching data: {str(e)}")
+        logging.error(f"Error obtaining token: {str(e)}")
         return func.HttpResponse(f"Error obtaining token: {str(e)}", status_code=500)
 
     # -----------------------
@@ -74,6 +72,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         "createdTo": created_to
     }
 
+    # Add optional filters to query parameters
     if contract_id:
         query_params["contractExternalId"] = contract_id
     if lastModifiedFrom:
@@ -81,11 +80,13 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     if lastModifiedTo:
         query_params["lastModifiedTo"] = lastModifiedTo
 
+    # Prepare headers for the API request, including authorization
     data_headers = {
-    "Authorization": f"Bearer {access_token}",
-    "Content-Type": "application/json"
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json"
     }
 
+    # Add pagination headers if provided
     if page_no:
         data_headers["Page-No"] = page_no
     if page_size:
@@ -99,7 +100,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         logging.info(f"Request URL: {data_response.url}")
         logging.info(f"Response status: {data_response.status_code}")
         logging.info(f"Response body: {data_response.text}")
-        data_response.raise_for_status()
+        data_response.raise_for_status()  # Raise if HTTP error occurred
+
+        # Return raw JSON response from Guidion API
         return func.HttpResponse(data_response.text, status_code=200, mimetype="application/json")
     except Exception as e:
         logging.error(f"Error fetching data: {str(e)}")
