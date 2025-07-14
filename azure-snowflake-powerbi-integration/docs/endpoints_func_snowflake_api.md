@@ -85,3 +85,20 @@ All exceptions are logged using logging.exception() in the Azure Function.
 - Calling Snowflake data from low-code platforms (e.g. OutSystems).
 - Building custom dashboards or reports that depend on dynamic Snowflake queries.
 - Exposing serverless APIs for internal tools or BI platforms.
+
+  ---
+
+### API in Action
+
+####  Azure Function Invocations
+
+This screenshot shows real usage from the Azure Portal (success and error counts):
+
+![Azure Function Invocations](img/azure_function_success.png)
+
+####  Postman Test
+
+This shows a successful SQL query execution via Postman calling the Azure Function API:
+
+![Postman Snowflake Test](img/postman_success_response.png)
+
