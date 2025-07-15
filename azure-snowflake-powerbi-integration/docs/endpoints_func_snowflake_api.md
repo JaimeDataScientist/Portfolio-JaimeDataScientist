@@ -5,15 +5,17 @@
 ### POST /api/getsnowflakedata
 
 **Description:**  
-This endpoint allows executing a SQL query on Snowflake using private key authentication. It is designed to be consumed by platforms like OutSystems, backend integrations, or BI tools such as Power BI.
+This endpoint allows executing a SQL query on Snowflake using **key pair authentication**.  
+It accepts dynamic parameters in the request body for connecting to specific Snowflake environments (`warehouse`, `database`, `schema`).  
+It is designed to be consumed by platforms like OutSystems, backend integrations, or BI tools such as Power BI.
 
 ---
 
 ## Authentication & Security
 
-- All secrets (private key, user, account, warehouse, database) are managed via Azure App Settings.
-- Nothing is hardcoded.
-- Function-level access requires a `?code=` key in the query string.
+- All secrets (private key, user, account) are managed via **Azure App Settings**.
+- Nothing is hardcoded in the codebase.
+- The endpoint uses **function-level authentication** and requires a `?code=` parameter in the query string.
 
 ---
 ### Production Endpoint
@@ -28,7 +30,12 @@ https://func-snowflake-api-feg7epdhe2dscaey.westeurope-01.azurewebsites.net/api/
 ### Requirements
 
 Send a `POST` request with a `Content-Type: application/json` header.  
-The JSON body must include a valid SQL query string under the field `query`.
+The JSON body must include:
+
+- `query`: a valid SQL string  
+- `warehouse`: Snowflake warehouse name  
+- `database`: Snowflake database name  
+- `schema`: Snowflake schema name  
 
 #### Request Example
 
@@ -37,7 +44,10 @@ POST /api/getsnowflakedata
 Content-Type: application/json
 
 {
-  "query": "SELECT * FROM your_table LIMIT 10"
+  "query": "SELECT * FROM TABLE LIMIT 10",
+  "warehouse": "MY_WH",
+  "database": "MY_DB",
+  "schema": "MY_SCHEMA"
 }
 ```
 ### Expected Response (200 OK)
